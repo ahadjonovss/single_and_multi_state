@@ -10,17 +10,11 @@ import 'package:equatable/equatable.dart';
 part 'single_state_event.dart';
 part 'single_state_state.dart';
 
-class SingleStateBloc extends Bloc<SingleStateEvent, SingleState> {
-  SingleStateBloc() : super(SingleState(status: Status.PURE, error: "", cards: [])) {
-    on<ChangeStatusEvent>(changeStatus);
-    on<SetErrorEvent>(setError);
-    on<SetCardsEvent>(setCards);
+class SingleStateBloc extends Bloc<GetDataEvent, SingleState> {
+  SingleStateBloc() : super(SingleState()) {
     on<GetDataEvent>(getData);
   }
 
-  changeStatus(ChangeStatusEvent event, emit) =>state.copyWith(status: event.status);
-  setError(SetErrorEvent event, emit) =>state.copyWith(error: event.error);
-  setCards(SetCardsEvent event, emit) =>state.copyWith(cards: event.cards);
   getData(GetDataEvent event, emit) async {
     emit(SingleState(status: Status.LOADING));
     MyResponse myResponse = await myLocale<ApiService>().getAllCards();
