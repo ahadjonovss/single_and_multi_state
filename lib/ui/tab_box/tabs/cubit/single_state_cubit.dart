@@ -1,5 +1,6 @@
 import 'package:bloc_task/state_managers/bloc/single_state_bloc/single_state_bloc.dart';
 import 'package:bloc_task/state_managers/cubit/single_state_cubit/single_state_cubit.dart';
+import 'package:bloc_task/ui/widgets/banks_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class SingleStateCubitPage extends StatelessWidget {
               return Text(state.error.toString());
             }
             if(state.status==Status.SUCCESS){
-              return Text("Data keldi");
+              return BankWidget(cards: state.cards!);
             }
             if(state.status==Status.LOADING){
               return CircularProgressIndicator();

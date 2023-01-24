@@ -1,5 +1,6 @@
 import 'package:bloc_task/app/app.dart';
 import 'package:bloc_task/state_managers/bloc/multi_state_bloc/multi_state_bloc.dart';
+import 'package:bloc_task/ui/widgets/banks_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,25 +11,26 @@ class MultiStateBlocPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Multi State Bloc")),
-      body: BlocConsumer<MultiStateBloc,MultiStateState>(
-        builder: (context, state) {
-          if(state is GettingDataInSuccess){
-            return Center(
-              child: Text("Data keldi"),
-            );
-          }
-          if(state is GettingDataInFailury){
-            return Center(
-              child: Text(state.errorText),
-            );
-          }
-          return Container();
+      body: Center(
+        child: BlocConsumer<MultiStateBloc,MultiStateState>(
+          builder: (context, state) {
+            if(state is GettingDataInSuccess){
+              return BankWidget(cards: state.cards);
+            }
+            if(state is GettingDataInFailury){
+              return Text(state.errorText);
+            }
+            if(state is GettingDataInProgress){
+              return CircularProgressIndicator();
+            }
+            return Container();
 
-        },
-        listener: (context, state) {
+          },
+          listener: (context, state) {
 
-        },
+          },
 
+        ),
       ),
       floatingActionButton: FloatingActionButton(
           onPressed:() {
