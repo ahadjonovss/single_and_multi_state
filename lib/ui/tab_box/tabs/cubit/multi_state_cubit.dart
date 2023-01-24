@@ -6,7 +6,8 @@ class MultiStateCubitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Multi State Cubit"),
+      appBar: AppBar(title: Text("Multi State Cubit")),
+
     );
   }
 }

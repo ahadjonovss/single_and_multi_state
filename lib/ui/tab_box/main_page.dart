@@ -24,6 +24,12 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: pages[currentPage],
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentPage,
+        onTap: (value) {
+          currentPage=value;
+          setState(() {});
+        },
+        type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),
           BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),

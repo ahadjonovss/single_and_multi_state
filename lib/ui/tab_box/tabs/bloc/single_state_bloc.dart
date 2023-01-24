@@ -6,7 +6,8 @@ class SingleStateBlocPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Single State Bloc"),
+      appBar: AppBar(title: Text("Single State Bloc")),
+
     );
   }
 }

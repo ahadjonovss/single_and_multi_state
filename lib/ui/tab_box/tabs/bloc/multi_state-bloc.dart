@@ -1,3 +1,4 @@
+import 'package:bloc_task/app/app.dart';
 import 'package:flutter/material.dart';
 
 class MultiStateBlocPage extends StatelessWidget {
@@ -6,7 +7,7 @@ class MultiStateBlocPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Multi State Bloc"),
+      appBar: AppBar(title: Text("Multi State Bloc")),
     );
   }
 }
