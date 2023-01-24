@@ -11,11 +11,11 @@ class SingleState extends Equatable {
     required this.cards,
   });
 
-  SingleState copyWith(
+  SingleState copyWith({
     Status? status,
     String? error,
     List? cards,
-  ) {
+  }) {
     return SingleState(
         error: error ?? this.error,
         cards: cards ?? this.cards,
@@ -24,11 +24,7 @@ class SingleState extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
-    status,
-    error,
-    cards
-  ];
+  List<Object?> get props => [status, error, cards];
 }
 
 enum Status { PURE, LOADING, ERROR, SUCCESS }

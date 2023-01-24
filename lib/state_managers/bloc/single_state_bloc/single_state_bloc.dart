@@ -7,10 +7,14 @@ import 'package:equatable/equatable.dart';
 part 'single_state_event.dart';
 part 'single_state_state.dart';
 
-class SingleStateBloc extends Bloc<SingleStateEvent, SingleStateState> {
-  SingleStateBloc() : super(SingleStateInitial()) {
-    on<SingleStateEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+class SingleStateBloc extends Bloc<SingleStateEvent, SingleState> {
+  SingleStateBloc() : super(SingleState(status: Status.PURE, error: "", cards: [])) {
+    on<ChangeStatusEvent>(changeStatus);
+    on<SetErrorEvent>(setError);
+    on<SetCardsEvent>(setCards);
   }
+
+  changeStatus(ChangeStatusEvent event, emit) =>state.copyWith(status: event.status);
+  setError(SetErrorEvent event, emit) =>state.copyWith(error: event.error);
+  setCards(SetCardsEvent event, emit) =>state.copyWith(cards: event.cards);
 }
