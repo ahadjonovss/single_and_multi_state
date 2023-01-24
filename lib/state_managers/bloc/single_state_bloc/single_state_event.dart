@@ -18,3 +18,5 @@ class SetErrorEvent extends SingleStateEvent{
   SetErrorEvent({required this.error});
 }
 
+class GetDataEvent extends SingleStateEvent{}
+

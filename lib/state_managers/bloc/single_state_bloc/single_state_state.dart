@@ -6,9 +6,9 @@ class SingleState extends Equatable {
   List? cards;
 
   SingleState({
-    required this.status,
-    required this.error,
-    required this.cards,
+     this.status,
+     this.error,
+     this.cards,
   });
 
   SingleState copyWith({
