@@ -1,6 +1,28 @@
 part of 'single_state_cubit.dart';
 
-@immutable
-abstract class SingleStateState {}
+class CubitSingleState extends Equatable {
+  Status? status;
+  String? error;
+  List? cards;
 
-class SingleStateInitial extends SingleStateState {}
+  CubitSingleState({
+    this.status,
+    this.error,
+    this.cards,
+  });
+
+  CubitSingleState copyWith({
+    Status? status,
+    String? error,
+    List? cards,
+  }) {
+    return CubitSingleState(
+        error: error ?? this.error,
+        cards: cards ?? this.cards,
+        status: status ?? this.status);
+  }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [status, error, cards];
+}

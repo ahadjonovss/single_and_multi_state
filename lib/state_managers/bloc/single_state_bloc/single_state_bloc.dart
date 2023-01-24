@@ -16,13 +16,13 @@ class SingleStateBloc extends Bloc<GetDataEvent, SingleState> {
   }
 
   getData(GetDataEvent event, emit) async {
-    emit(SingleState(status: Status.LOADING));
+    emit(state.copyWith(status: Status.LOADING));
     MyResponse myResponse = await myLocale<ApiService>().getAllCards();
     if(myResponse.error==""){
-      emit(SingleState(cards: myResponse.data));
+      emit(state.copyWith(cards: myResponse.data,status: Status.SUCCESS));
 
     }else{
-      emit(SingleState(error: myResponse.error));
+      emit(state.copyWith(error: myResponse.error,status: Status.ERROR));
 
     }
 

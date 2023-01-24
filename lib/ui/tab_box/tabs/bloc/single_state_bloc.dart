@@ -10,29 +10,26 @@ class SingleStateBlocPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Single State Bloc")),
-      body: BlocConsumer<SingleStateBloc,SingleState>(
-        listener: (context, state) {
-
-        },
-        builder: (context, state) {
-          if(state.error!=null){
-            return Center(
-              child: Text("Data keldi"),
-            );
+      body: Center(
+        child: BlocBuilder<SingleStateBloc,SingleState>(
+          builder: (context, state) {
+            if(state.status==Status.SUCCESS){
+              return ListView.builder(
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: state.cards!.length,
+                itemBuilder: (context, index) =>ListTile(title: Text(state.cards![index].bankName)),);
+            }
+            if(state.status==Status.LOADING){
+              return CircularProgressIndicator();
+            }
+            if(state.status==Status.ERROR){
+              return Text(state.error.toString());
           }
-          if(state.status==Status.LOADING){
-            return Center(
-              child: Text("Loading"),
-            );
-          }
-          if(state.cards!=null){
-            return Center(
-            child: Text("Data Keldi"),
-            );
-        }
-          return Container();
+            return Container();
 
-        },
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
