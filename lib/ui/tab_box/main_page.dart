@@ -23,6 +23,14 @@ class _MainPageState extends State<MainPage> {
     ];
     return Scaffold(
       body: pages[currentPage],
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin),label: ""),
+        ],
+      ),
 
 
     );
