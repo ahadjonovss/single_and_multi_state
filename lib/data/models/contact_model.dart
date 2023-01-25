@@ -1,4 +1,5 @@
 class ContactModel {
+  int? id;
   String name;
   String number;
   String createdAt;
@@ -21,4 +22,5 @@ class ContactModel {
       "createdAt":createdAt
     };
   }
+
 }
