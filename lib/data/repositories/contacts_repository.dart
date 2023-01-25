@@ -11,7 +11,7 @@ class ContactsRepository{
 
   createDatabase() async {
     String databasesPath = await getDatabasesPath();
-    String dbPath = databasesPath+'contacts.db';
+    String dbPath = '${databasesPath}contacts.db';
 
     var database = await openDatabase(dbPath, version: 1, onCreate: populateDb);
     return database;
@@ -26,18 +26,22 @@ class ContactsRepository{
         ")");
   }
 
-  Future<int> createCustomer(ContactModel contactModel) async {
+  Future<int> addContact(ContactModel contactModel) async {
     var result = await db!.insert(tableName, contactModel.toJson());
     return result;
   }
 
-  Future<List> getCustomers() async {
+  Future<List> getContact() async {
     var result = await db!.query(tableName, columns: ["id", "name", "number", "createdAt"]);
 
     return result.toList();
   }
 
-  Future<int> updateCustomer(ContactModel contactModel) async {
+  Future<int> updateContact(ContactModel contactModel) async {
     return await db!.update(tableName, contactModel.toJson(), where: "id = ?", whereArgs: [contactModel.id]);
+  }
+
+  Future<int> deleteCustomer(int id) async {
+    return await db!.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 }
