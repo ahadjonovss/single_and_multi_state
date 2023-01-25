@@ -11,17 +11,17 @@ class ContactsCubit extends Cubit<ContactsState> {
 
   addContact(ContactModel newContact) async {
     await myLocale<ContactsRepository>().addContact(newContact);
-    emit(GetContactsState());
+    getContacts();
   }
 
   updateContact(ContactModel newContact) async {
     await myLocale<ContactsRepository>().updateContact(newContact);
-    emit(GetContactsState());
+    getContacts();
   }
 
   deleteContact(int id) async {
-    await myLocale<ContactsRepository>().deleteCustomer(id);
-    emit(GetContactsState());
+    await myLocale<ContactsRepository>().deleteContact(id);
+    getContacts();
   }
 
   getContacts() async {

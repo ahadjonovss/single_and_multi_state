@@ -1,6 +1,7 @@
 import 'package:bloc_task/state_managers/bloc/multi_state_bloc/multi_state_bloc.dart';
 import 'package:bloc_task/state_managers/bloc/single_state_bloc/single_state_bloc.dart';
 import 'package:bloc_task/state_managers/cubit/connectivity/connectivity_cubit.dart';
+import 'package:bloc_task/state_managers/cubit/contacts/contacts_cubit.dart';
 import 'package:bloc_task/state_managers/cubit/multi_state_cubit/multi_state_cubit.dart';
 import 'package:bloc_task/state_managers/cubit/single_state_cubit/single_state_cubit.dart';
 import 'package:bloc_task/ui/contants/home_page.dart';
@@ -22,6 +23,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => SingleStateCubit(),),
         BlocProvider(create: (context) => MultiStateCubit(),),
         BlocProvider(create: (context) => ConnectivityCubit(),),
+        BlocProvider(create: (context) => ContactsCubit(),),
       ],
         child: MyApp());
   }

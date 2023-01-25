@@ -2,14 +2,22 @@ import 'package:bloc_task/data/models/contact_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ContactsRepository{
-  Database? db;
+  Database? database;
   String tableName="Contacts";
 
-  ContactsRepository(){
-    db = createDatabase();
+  ContactsRepository();
+
+  Future<Database> getDb() async {
+    if (database == null) {
+      database = await createDatabase();
+      return database!;
+    }
+    return database!;
   }
 
+
   createDatabase() async {
+
     String databasesPath = await getDatabasesPath();
     String dbPath = '${databasesPath}contacts.db';
 
@@ -26,22 +34,34 @@ class ContactsRepository{
         ")");
   }
 
-  Future<int> addContact(ContactModel contactModel) async {
-    var result = await db!.insert(tableName, contactModel.toJson());
-    return result;
+  Future addContact(ContactModel contactModel) async {
+    Database db = await getDb();
+    var id = await db.insert(tableName, contactModel.toJson());
+    print("mana id $id");
+    return contactModel.copyWith(id: id);
+
   }
 
   Future<List> getContact() async {
-    var result = await db!.query(tableName, columns: ["id", "name", "number", "createdAt"]);
+    Database db = await getDb();
+
+    var result = await db.query(tableName, columns: ["id", "name", "number", "createdAt"]);
 
     return result.toList();
   }
 
-  Future<int> updateContact(ContactModel contactModel) async {
-    return await db!.update(tableName, contactModel.toJson(), where: "id = ?", whereArgs: [contactModel.id]);
+  Future updateContact(ContactModel contactModel) async {
+    Database db = await getDb();
+    print("Mana id ${contactModel.id}");
+    var id=  await db.update(tableName, contactModel.toJson(), where: "id = ?", whereArgs: [contactModel.id]);
+    return contactModel.copyWith(id: id);
+
   }
 
-  Future<int> deleteCustomer(int id) async {
-    return await db!.delete(tableName, where: 'id = ?', whereArgs: [id]);
+  Future<int> deleteContact(int id) async {
+    print("$id dagi contact o'chdi");
+    Database db = await getDb();
+
+    return await db.delete(tableName, where: 'id = ?', whereArgs: [id]);
   }
 }
