@@ -10,3 +10,14 @@ class ContactsGotInSuccess extends ContactsState {
   ContactsGotInSuccess({required this.contacts});
 }
 
+class ContactsGotInProgress extends ContactsState {}
+
+class ContactsGotInFailury extends ContactsState {
+  String error;
+
+  ContactsGotInFailury({required this.error});
+
+
+}
+
+

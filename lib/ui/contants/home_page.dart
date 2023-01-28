@@ -50,6 +50,12 @@ class HomePage extends StatelessWidget {
                 ),
               );
             }
+            if(state is ContactsGotInProgress){
+              return CircularProgressIndicator();
+            }
+            if(state is ContactsGotInFailury){
+              return Text(state.error);
+            }
             if(state is ContactsInitial){
               context.read<ContactsCubit>().getContacts();
             }
