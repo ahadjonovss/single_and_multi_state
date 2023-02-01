@@ -1,3 +1,4 @@
+import 'package:bloc_task/getX/ui.dart';
 import 'package:bloc_task/state_managers/bloc/multi_state_bloc/multi_state_bloc.dart';
 import 'package:bloc_task/state_managers/bloc/single_state_bloc/single_state_bloc.dart';
 import 'package:bloc_task/state_managers/cubit/connectivity/connectivity_cubit.dart';
@@ -31,11 +32,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainPage(),
+      home: GetXTask(),
     );
   }
 }
