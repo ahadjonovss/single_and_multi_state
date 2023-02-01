@@ -1,3 +1,5 @@
+import 'package:bloc_task/getX/ui.dart';
+import 'package:bloc_task/rx/ui.dart';
 import 'package:bloc_task/state_managers/cubit/connectivity/connectivity_cubit.dart';
 import 'package:bloc_task/ui/no_internet/no_internet_page.dart';
 import 'package:bloc_task/ui/tab_box/tabs/bloc/multi_state-bloc.dart';
@@ -23,10 +25,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     List pages = [
-      SingleStateBlocPage(),
-      MultiStateBlocPage(),
-      SingleStateCubitPage(),
-      MultiStateCubitPage()
+      RXDartTask(),
+      GetXTask()
     ];
     return BlocListener<ConnectivityCubit,ConnectivityState>(
       listener: (context, state) {
@@ -47,8 +47,6 @@ class _MainPageState extends State<MainPage> {
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.block),label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin),label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.currency_bitcoin),label: ""),
           ],
         ),
 
